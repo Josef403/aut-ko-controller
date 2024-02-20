@@ -46,6 +46,7 @@ input.onButtonPressed(Button.B, function () {
     datalogger.createCV("button", "B"),
     datalogger.createCV("inicialised", inicialised)
     )
+    log_hříbek_joystick = !(log_hříbek_joystick)
 })
 joystickbit.onButtonEvent(joystickbit.JoystickBitPin.P13, joystickbit.ButtonType.down, function () {
     datalogger.log(
@@ -69,6 +70,7 @@ joystickbit.onButtonEvent(joystickbit.JoystickBitPin.P12, joystickbit.ButtonType
         radio.sendValue("drive", code(-50, 50))
     }
 })
+let log_hříbek_joystick = false
 let inicialised = false
 radio.setGroup(20)
 inicialised = false
@@ -76,9 +78,12 @@ datalogger.setColumnTitles(
 "button",
 "inicialised",
 "send variable name",
-"send variable value"
+"send variable value",
+"rocker value x",
+"rocker value y"
 )
 datalogger.includeTimestamp(FlashLogTimeStampFormat.Seconds)
 joystickbit.initJoystickBit()
 basic.showIcon(IconNames.House)
 inicialised = true
+log_hříbek_joystick = true
